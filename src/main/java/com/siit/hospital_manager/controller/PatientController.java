@@ -1,8 +1,8 @@
 package com.siit.hospital_manager.controller;
 
-import com.siit.hospital_manager.model.dto.CreatePatientDto;
-import com.siit.hospital_manager.model.dto.PatientDto;
+import com.siit.hospital_manager.model.dto.*;
 import com.siit.hospital_manager.service.PatientService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,21 +23,18 @@ public class PatientController {
     }
 
     @PostMapping
-    public void createPatient(@RequestBody CreatePatientDto createPatientDto){
+    public void createPatient(@RequestBody @Valid CreatePatientDto createPatientDto){
         patientService.createPatient(createPatientDto);
     }
-//      http://localhost:8080/patients/id?id=49480890-4a52-4d36-b476-cfa64232d0b5
-//      http://localhost:8080/patients/49480890-4a52-4d36-b476-cfa64232d0b5
-//    @GetMapping("/id")
-//    public Patient findById(@RequestParam("id") Integer id) {
-//        return patientService.findById(id);
-//    }
 
     @GetMapping("{id}")
     public PatientDto findById(@PathVariable("id") Integer id) {
         return patientService.findById(id);
     }
 
-
+    @PatchMapping
+    public void updatePatient(@RequestBody UpdatePatientDto updatePatientDto){
+        patientService.updatePatient(updatePatientDto);
+    }
 
 }
