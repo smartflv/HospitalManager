@@ -1,8 +1,12 @@
 package com.siit.hospital_manager.model.dto;
 
+import org.hibernate.validator.constraints.Range;
+
 public class UpdatePatientDto {
 
     Integer id;
+
+    @Range(min = 0, max = 120)
     private Integer age;
 
     public Integer getId() {

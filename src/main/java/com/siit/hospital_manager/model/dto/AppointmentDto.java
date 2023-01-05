@@ -1,0 +1,15 @@
+package com.siit.hospital_manager.model.dto;
+
+import com.siit.hospital_manager.model.Patient;
+import lombok.*;
+
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+public class AppointmentDto {
+    private Integer id;
+    private LocalDateTime date;
+    private Patient patient;
+
+}
