@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -38,9 +39,15 @@ public class AppointmentService {
                 () -> new BusinessException(HttpStatus.NOT_FOUND, "User not found")
         );
 
-        List<Appointment> appointments = appointmentsRepository.findAllById(List.of(patient.getId()));
+        List<Appointment> appointments = appointmentsRepository.findAllByPatientId(patient.getId());
         return appointments.stream()
                 .map(Appointment::toDto)
                 .toList();
+    }
+
+    public void deleteAppointmentById(Integer id) {
+        appointmentsRepository.findById(id).orElseThrow(
+                () -> new BusinessException(HttpStatus.NOT_FOUND, "Appointment not found"));
+        appointmentsRepository.deleteById(id);
     }
 }

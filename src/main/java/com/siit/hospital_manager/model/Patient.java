@@ -16,6 +16,8 @@ import java.util.List;
 public class Patient extends User{
     private String name;
     private Integer age;
+    private String phoneNumber;
+
     @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     List<Appointment> appointments;

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * This bean is used to config security access for SpringDoc with bearer token.
  */
 @Configuration
-@OpenAPIDefinition(info = @Info(title = "Waitlist API", version = "1.0"))
+@OpenAPIDefinition(info = @Info(title = "Hospital manager API", version = "1.0"))
 public class SpringDocSecurityConfig {
     private static final String SCHEME_NAME = "spring_doc_security_config";
     private static final String SCHEME = "basic";

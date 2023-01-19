@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import static com.siit.hospital_manager.util.AuthUtils.*;
+
 @Controller
 public class HomePageController {
 
@@ -27,28 +29,6 @@ public class HomePageController {
         return "dashboard/dashboard";
     }
 
-    private boolean isAdmin(Authentication authentication){
-        return authentication
-                .getAuthorities()
-                .stream()
-                .map(GrantedAuthority::getAuthority)
-                .toList().contains("ROLE_ADMIN");
-    }
 
-    private boolean isPatient(Authentication authentication){
-        return authentication
-                .getAuthorities()
-                .stream()
-                .map(GrantedAuthority::getAuthority)
-                .toList().contains("ROLE_PATIENT");
-    }
-
-    private boolean isDoctor(Authentication authentication){
-        return authentication
-                .getAuthorities()
-                .stream()
-                .map(GrantedAuthority::getAuthority)
-                .toList().contains("ROLE_DOCTOR");
-    }
 
 }

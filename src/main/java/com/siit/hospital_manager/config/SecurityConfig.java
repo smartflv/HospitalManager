@@ -23,9 +23,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests()
                 .requestMatchers("/", "/public", "/api-docs/**", "/swagger-ui/**", "/actuator/**", "/patient/create").permitAll()
-                .requestMatchers("/dashboard/**", "/dashboard").hasRole("PATIENT")
+                .requestMatchers("/dashboard/**", "/dashboard", "/appointment/findAllByPatient", "/appointment/viewAll.html").hasRole("PATIENT")
                 .requestMatchers("/**").hasRole("ADMIN")
-                .requestMatchers("/mvc/patient/viewAll").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .and()

@@ -8,7 +8,5 @@ import lombok.EqualsAndHashCode;
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
 @EqualsAndHashCode(callSuper = true)
 public class Admin extends User {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+
 }

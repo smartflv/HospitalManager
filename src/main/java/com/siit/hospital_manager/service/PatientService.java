@@ -49,6 +49,7 @@ public class PatientService {
                 .age(createPatientDto.getAge())
                 .isActive(true)
                 .roles("ROLE_PATIENT")
+                .phoneNumber(createPatientDto.getPhoneNumber())
                 .build();
         return userRepository.save(patient).getId();
     }

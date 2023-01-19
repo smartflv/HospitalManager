@@ -11,6 +11,7 @@ import java.util.List;
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class Doctor extends User{
     private String name;
+    private String specialisation;
     @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     List<Appointment> appointments;
