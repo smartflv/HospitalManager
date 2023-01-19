@@ -1,9 +1,11 @@
 package com.siit.hospital_manager.service;
 
-import com.siit.hospital_manager.model.Appointment;
+import com.siit.hospital_manager.exception.BusinessException;
+import com.siit.hospital_manager.model.*;
 import com.siit.hospital_manager.model.dto.AppointmentDto;
-import com.siit.hospital_manager.repository.AppointmentsRepository;
+import com.siit.hospital_manager.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +15,12 @@ import java.util.List;
 public class AppointmentService {
 
     private final AppointmentsRepository appointmentsRepository;
+    private final UserRepository userRepository;
 
     public List<AppointmentDto> findAllByPatientId(Integer id) {
         List<Appointment> appointments = appointmentsRepository.findAllByPatientId(id);
 
-       return appointments
+        return appointments
                 .stream()
                 .map(Appointment::toDto)
                 .toList();
@@ -26,6 +29,17 @@ public class AppointmentService {
     public List<AppointmentDto> findAll() {
         return appointmentsRepository.findAll()
                 .stream()
+                .map(Appointment::toDto)
+                .toList();
+    }
+
+    public List<AppointmentDto> findAllByUserName(String userName) {
+        User patient = userRepository.findByUserName(userName).orElseThrow(
+                () -> new BusinessException(HttpStatus.NOT_FOUND, "User not found")
+        );
+
+        List<Appointment> appointments = appointmentsRepository.findAllById(List.of(patient.getId()));
+        return appointments.stream()
                 .map(Appointment::toDto)
                 .toList();
     }

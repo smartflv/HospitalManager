@@ -15,17 +15,21 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web -> web.ignoring().requestMatchers("/", "/public", "/user"));
+        return (web -> web.ignoring().requestMatchers("/", "/public"));
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/public", "/user").permitAll()
-                .requestMatchers("/mvc/patient/viewAll").hasRole("PATIENT")
+                .requestMatchers("/", "/public", "/api-docs/**", "/swagger-ui/**", "/actuator/**", "/patient/create").permitAll()
+                .requestMatchers("/dashboard/**", "/dashboard").hasRole("PATIENT")
+                .requestMatchers("/**").hasRole("ADMIN")
+                .requestMatchers("/mvc/patient/viewAll").hasRole("ADMIN")
                 .and()
-                .formLogin();
+                .formLogin()
+                .and()
+                .csrf().disable();
         return http.build();
     }
 
@@ -34,15 +38,4 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user = User.withDefaultPasswordEncoder()
-//                .username("aaa")
-//                .password("123")
-//                .roles("DOCTOR")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
 }
