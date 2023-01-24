@@ -2,6 +2,7 @@ package com.siit.hospital_manager.controller;
 
 import com.siit.hospital_manager.model.dto.AppointmentDto;
 import com.siit.hospital_manager.service.AppointmentService;
+import com.siit.hospital_manager.service.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import java.util.List;
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
+    private final DoctorService doctorService;
 
     @GetMapping("/findAllByPatient")
     public String findAllByPatient(Model model, Principal principal) {
@@ -28,11 +30,18 @@ public class AppointmentController {
         return "appointment/viewAll";
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public String deleteAppointmentById(Model model, Integer id){
-         appointmentService.deleteAppointmentById(id);
-        return "appointment/viewAll";
+    public void deleteAppointmentById(Model model, @PathVariable Integer id, Principal principal){
+         appointmentService.deleteAppointmentByIdAndPatient(id, principal.getName());
+    }
+
+    @GetMapping("/create")
+    public String create(Model model, Principal principal) {
+        model.addAttribute("doctors", doctorService.findAll());
+
+
+        return "appointment/create";
     }
 
 }

@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/mvc/patient")
 @RequiredArgsConstructor
-public class PatientMVCController {
+public class PatientMvcController {
 
     private final PatientService patientService;
     @GetMapping("viewAll")
@@ -42,6 +42,5 @@ public class PatientMVCController {
         model.addAttribute("createPatientDto", createPatientDto);
         return "patient/create";
     }
-
 
 }
