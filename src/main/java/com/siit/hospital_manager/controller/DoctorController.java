@@ -39,7 +39,7 @@ public class DoctorController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteDoctorById(Model model, @PathVariable Integer id){
+    public void deleteDoctorById(@PathVariable Integer id){
         doctorService.deleteDoctorById(id);
     }
 

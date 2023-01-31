@@ -31,12 +31,12 @@ public class AppointmentController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteAppointmentById(Model model, @PathVariable Integer id, Principal principal){
+    public void deleteAppointmentById(@PathVariable Integer id, Principal principal){
          appointmentService.deleteAppointmentByIdAndPatient(id, principal.getName());
     }
 
     @GetMapping("/create")
-    public String create(Model model, Principal principal) {
+    public String create(Model model) {
         model.addAttribute("doctors", doctorService.findAll());
         return "appointment/create";
     }
