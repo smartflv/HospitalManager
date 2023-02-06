@@ -2,12 +2,18 @@ package com.siit.hospital_manager.model;
 
 import com.siit.hospital_manager.model.dto.AppointmentDto;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "appointments")
+@Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Appointment {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,37 +38,5 @@ public class Appointment {
                 .patient(patient)
                 .doctor(doctor)
                 .build();
-    }
-    public Appointment() {
-    }
-
-    public Appointment(Integer id, LocalDateTime date, Patient patient) {
-        this.id = id;
-        this.date = date;
-        this.patient = patient;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
     }
 }

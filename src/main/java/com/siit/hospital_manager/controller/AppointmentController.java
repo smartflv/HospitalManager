@@ -1,8 +1,9 @@
 package com.siit.hospital_manager.controller;
 
-import com.siit.hospital_manager.model.dto.AppointmentDto;
+import com.siit.hospital_manager.model.dto.*;
 import com.siit.hospital_manager.service.AppointmentService;
 import com.siit.hospital_manager.service.DoctorService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -37,8 +38,22 @@ public class AppointmentController {
 
     @GetMapping("/create")
     public String create(Model model) {
+        model.addAttribute("appointment", CreateAppointmentDto.builder().build());
         model.addAttribute("doctors", doctorService.findAll());
+
         return "appointment/create";
+    }
+
+    @PostMapping("/submitCreateAppointmentForm")
+    public String submitCreateAppointmentForm(@Valid CreateAppointmentDto createAppointmentDto, Principal principal){
+        appointmentService.createAppointment(createAppointmentDto, principal.getName());
+        return "redirect:/appointment/findAllByPatient";
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateAppointment(@PathVariable Integer id, @Valid @RequestBody UpdateAppointmentDto updateAppointmentDto, Principal principal){
+        appointmentService.updateAppointment(id, updateAppointmentDto, principal.getName());
     }
 
 }

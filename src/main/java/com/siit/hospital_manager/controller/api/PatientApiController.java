@@ -1,4 +1,4 @@
-package com.siit.hospital_manager.controller;
+package com.siit.hospital_manager.controller.api;
 
 import com.siit.hospital_manager.model.dto.*;
 import com.siit.hospital_manager.service.PatientService;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/patient")
+@RequestMapping("/api/patient")
 public class PatientApiController {
 
     private final PatientService patientService;

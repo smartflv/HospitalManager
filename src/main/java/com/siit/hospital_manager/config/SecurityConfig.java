@@ -17,14 +17,13 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web -> web.ignoring().requestMatchers("/", "/public"));
     }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
                 .requestMatchers("/", "/public", "/api-docs/**", "/swagger-ui/**",
                         "/actuator/**", "/mvc/patient/create", "/validationError.html", "/error",
-                        "/favicon.ico", "/mvc/patient/submitCreatePatientForm", "/entityExistsError.html").permitAll()
+                        "/favicon.ico", "/mvc/patient/submitCreatePatientForm", "/entityExistsError.html", "/static/**").permitAll()
                 .requestMatchers("/dashboard/**", "/dashboard", "/appointment/**").hasAnyRole("PATIENT", "ADMIN")
                 .requestMatchers("/**").hasRole("ADMIN")
                 .and()
