@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Create a patient</title>
@@ -9,8 +9,8 @@
 <body>
 <div class="w-50 mx-auto content-between-l">
     <br/>
-    <h2>Create a patient account with us</h2>
-    <div>
+    <h2><center>Create a patient account with us</center></h2>
+    <div> <center>
         <form th:object="${patient}" th:action="@{/mvc/patient/submitCreatePatientForm}" method="post">
             <div class="mb-0 w-75 p-1">
                 <label class="form-label" for="userName">UserName:</label>
@@ -32,6 +32,14 @@
                 <label class="form-label" for="phoneNumber">Phone number:</label>
                 <input class="form-control" type="text" id="phoneNumber" th:field="*{phoneNumber}"/>
             </div>
+            <div class="mb-0 w-75 p-1">
+                <label class="form-label" for="medicalHistory">Medical History:</label>
+                <input class="form-control" type="text" id="medicalHistory" th:field="*{medicalHistory}"/>
+            </div>
+            <div class="mb-0 w-75 p-1">
+                <label class="form-label" for="medicalHistory">Treatment Plan:</label>
+                <input class="form-control" type="text" id="treatmentPlan" th:field="*{treatmentPlan}"/>
+            </div>
             <div class="w-75 p-3 text-end">
                 <input type="submit" value="Submit" class="btn btn-primary "/>
                 <br>
@@ -41,8 +49,28 @@
                     <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
                 </ul>
             </div>
+
         </form>
+    </center>
     </div>
 </div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+body {
+height: 100%;
+opacity: 1;
+background-image: url("https://img.freepik.com/free-vector/hospital-clinic-building-with-ambulance-car-truck_107791-2645.jpg?w=1480&t=st=1677425090~exp=1677425690~hmac=8a2c69ac6b21911399790c541304cf69544ffb3e3ede0961d7e60bb319d2ad7d");
+height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
+
+
+</style>
+
 </body>
 </html>

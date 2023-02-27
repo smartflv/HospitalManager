@@ -30,12 +30,9 @@ public class PatientService {
     }
 
     public PatientDto findById(Integer id) {
-        Patient patient = patientRepository
-                .findById(id)
-                .orElseThrow(() -> new BusinessException(HttpStatus.NOT_FOUND, "Patient with id " + id + " not found"));
+        Patient patient = findPatientById(id);
         return new PatientDto(patient);
     }
-
 
     @Transactional
     public Integer createPatient(CreatePatientDto createPatientDto) {
@@ -53,14 +50,15 @@ public class PatientService {
                 .isActive(true)
                 .roles("ROLE_PATIENT")
                 .phoneNumber(createPatientDto.getPhoneNumber())
+                .treatmentPlan(createPatientDto.getTreatmentPlan())
+                .medicalHistory(createPatientDto.getMedicalHistory())
                 .build();
         return userRepository.save(patient).getId();
     }
 
     public void updatePatient(UpdatePatientDto updatePatientDto) {
-        Patient patient = patientRepository
-                .findById(updatePatientDto.getId())
-                .orElseThrow(() -> new BusinessException(HttpStatus.BAD_REQUEST, "Patient with id " + updatePatientDto.getId() + " not found"));
+        Patient patient = findPatientById(updatePatientDto.getId());
+
 
         if (updatePatientDto.getAge() != null) {
             patient.setAge(updatePatientDto.getAge());
@@ -68,5 +66,15 @@ public class PatientService {
         patientRepository.save(patient);
     }
 
-    // same for delete
+    public Patient findByUserName(String userName) {
+        return patientRepository.findByUserName(userName)
+                .orElseThrow(() -> new BusinessException(HttpStatus.BAD_REQUEST, "Patient with userName " + userName + " not found"));
+    }
+
+    private Patient findPatientById(Integer id) {
+        return patientRepository
+                .findById(id)
+                .orElseThrow(() -> new BusinessException(HttpStatus.BAD_REQUEST, "Patient with id " + id + " not found"));
+    }
+
 }

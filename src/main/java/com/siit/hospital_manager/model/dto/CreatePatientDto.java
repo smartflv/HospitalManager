@@ -22,6 +22,13 @@ public class CreatePatientDto {
     @NotNull(message = "Password can not be null")
     private String password;
     @NotNull(message = "Phone number can not be null")
-    @Pattern(regexp="0[0-9]{9}")
+    @Pattern(regexp="0[0-9]+")
     private String phoneNumber;
+    @NotNull(message = "Treatment Plan field can not be null")
+    @Pattern(regexp = "[A-Z][a-z]+\s*")
+    private String treatmentPlan;
+    @NotNull(message = "Medical history field can not be null")
+    @Pattern(regexp = "[A-Z][a-z]+\s*")
+    private String medicalHistory;
+
 }

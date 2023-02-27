@@ -2,6 +2,7 @@ package com.siit.hospital_manager.model;
 
 import com.siit.hospital_manager.model.dto.CreateDoctorDto;
 import com.siit.hospital_manager.model.dto.DoctorDto;
+import com.siit.hospital_manager.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

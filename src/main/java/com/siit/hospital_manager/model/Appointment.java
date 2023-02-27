@@ -28,7 +28,7 @@ public class Appointment {
     private Doctor doctor;
 
     public AppointmentDto toDto(){
-        String dateFormat = "MMM dd HH:mm";
+        String dateFormat = "MMM dd HH:mm YYYY";
         String formattedDate = date.format(DateTimeFormatter.ofPattern(dateFormat));
 
         return AppointmentDto

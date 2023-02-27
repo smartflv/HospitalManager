@@ -10,9 +10,15 @@
 <div class="w-25 mx-auto">
     <br/>
     <h2 class="text-center" th:if="${isAdmin}">Admin dashboard</h2>
-    <h2 th:if="${isDoctor}">Doctor dashboard</h2>
-    <h2 th:if="${isPatient}">Patient dashboard</h2>
+    <h2 class="text-center" th:if="${isDoctor}">Doctor dashboard</h2>
+    <h2 class="text-center" th:if="${isPatient}">Patient dashboard</h2>
 
+    <br/><br/>
+    <div class="row d-flex content-center">
+        <button class="btn btn-primary" th:if="${isPatient}" onclick="window.location.href='/appointment/create';">
+            Create an appointment
+        </button>
+    </div>
     <br/><br/>
     <div class="row d-flex content-center">
         <button class="btn btn-primary" th:if="${isPatient}"
@@ -22,10 +28,26 @@
     </div>
     <br/><br/>
     <div class="row d-flex content-center">
-        <button class="btn btn-primary" th:if="${isPatient}" onclick="window.location.href='/appointment/create';">
-            Create an appointment
+        <button class="btn btn-primary" th:if="${isPatient}"
+                onclick="window.location.href='/appointment/history';">
+            Appointments History
         </button>
     </div>
+    <br/><br/>
+    <div class="row d-flex content-center">
+        <button class="btn btn-primary" th:if="${isPatient}"
+                onclick="window.location.href='/mvc/patient/medicalHistory';">
+            View my Medication
+        </button>
+    </div>
+    <br/><br/>
+    <div class="row d-flex content-center">
+        <button class="btn btn-primary" th:if="${isPatient}"
+                onclick="window.location.href='/mvc/patient/treatmentPlan';">
+            View my Treatment
+        </button>
+    </div>
+    <br/><br/>
     <div class="row d-flex content-center">
         <button class="btn btn-primary" th:if="${isAdmin}" onclick="window.location.href='/mvc/doctor/createDoctor';">
             Create a doctor
@@ -40,10 +62,52 @@
     </div>
     <br/><br/>
     <div class="row d-flex content-center">
+        <button class="btn btn-primary" th:if="${isAdmin}" onclick="window.location.href='/mvc/patient/viewAll';">
+            View all patients
+        </button>
+    </div>
+    <br/><br/>
+    <div class="row d-flex content-center">
+        <button class="btn btn-primary" th:if="${isDoctor}" onclick="window.location.href='/mvc/doctor/viewAll';">
+            View all doctors
+        </button>
+    </div>
+    <br/><br/>
+    <div class="row d-flex content-center">
+        <button class="btn btn-primary" th:if="${isDoctor}" onclick="window.location.href='/mvc/patient/viewAll';">
+            View all patients
+        </button>
+    </div>
+    <br/><br/>
+    <div class="row d-flex content-center">
+        <button class="btn btn-primary" th:if="${isDoctor}" onclick="window.location.href='/appointment/findAllByPatient';">
+            View appointments by patient
+        </button>
+    </div>
+    <br/><br/>
+
+
+
+    <div class="row d-flex content-center">
         <button class="btn btn-primary" onclick="window.location.href='/logout';">
             Logout
         </button>
     </div>
 </div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+body {
+height: 100%;
+background-image: url("https://wallpaperaccess.com/full/1282794.jpg");
+height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
+</style>
+
 </body>
 </html>
