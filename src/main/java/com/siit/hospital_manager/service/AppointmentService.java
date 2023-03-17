@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.siit.hospital_manager.model.Appointment;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,8 +44,10 @@ public class AppointmentService {
         );
 
         List<Appointment> appointments = appointmentsRepository.findAllByPatientId(patient.getId());
+        List<AppointmentDto> pastAppointments = findPastAppointmentsByUserName(userName);
         return appointments.stream()
                 .map(Appointment::toDto)
+                .filter(app ->!pastAppointments.contains(app))
                 .toList();
     }
 
@@ -87,5 +90,15 @@ public class AppointmentService {
 
         appointment.setDate(newDate);
         appointmentsRepository.save(appointment);
+    }
+
+    public List<AppointmentDto> findPastAppointmentsByUserName(String userName) {
+        User patient = userRepository.findByUserName(userName).orElseThrow(
+                () -> new BusinessException(HttpStatus.NOT_FOUND, "User not found")
+        );
+        List<Appointment> appointments = appointmentsRepository.findAllByPatientIdAndDateLessThan(patient.getId(), LocalDateTime.now());
+        return appointments.stream()
+                .map(Appointment::toDto)
+                .toList();
     }
 }

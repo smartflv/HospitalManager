@@ -3,7 +3,7 @@
 <head>
   <title>Error</title>
 </head>
-<body>
+<body><center>
 <h3>Validation Error!</h3>
 <p>
   Example
@@ -12,7 +12,34 @@
   Name: Good Name
   Age: 33
   Phone number: 0740123123
+  Medical history: Diabetes Hypertension Stroke
+  Treatment plan: Bisoprolol Paracetamol Atorvastatina
 </p>
-<a href="javascript:history.back()">Go Back</a>
+  <button class="back-button" onclick="javascript:history.back()">
+    Go Back
+  </button>
+
+   <!--<a href="javascript:history.back()">Go Back</a> -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+body {
+height: 100%;
+opacity: 1;
+background-image: url("https://img.freepik.com/free-vector/tiny-people-standing-near-prohibited-gesture-isolated-flat-illustration_74855-11132.jpg?w=1380&t=st=1677426271~exp=1677426871~hmac=86ec9ee45a3bf4bf8f5d71b09fdb6461f3cc6e8061bb33c627f2a10f9f7c2e0c");
+height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
+.back-button {
+background-color: orange;
+border-radius: 4px;
+}
+
+</style>
+</center>
 </body>
 </html>

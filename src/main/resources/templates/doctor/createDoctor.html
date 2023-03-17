@@ -9,23 +9,24 @@
 <body>
 <div class="w-50 mx-auto content-between-l">
     <br/>
-    <h2>Create doctor</h2>
-    <div>
+    <h2><center>Create doctor</center></h2>
+
+    <div><center>
     <form th:object="${doctor}" th:action="@{/mvc/doctor/submitCreateDoctorForm}" method="post">
         <div class="mb-1 w-75 p-3">
-            <label class="form-label" for="name">Name:</label>
+            <label class="form-label" for="name"><b>Name:</b></label>
             <input class="form-control" type="text" id="name" th:field="*{name}"/>
         </div>
         <div class="mb-1 w-75 p-3">
-            <label class="form-label" for="specialisation">Specialisation:</label>
+            <label class="form-label" for="specialisation"><b>Specialisation:</b></label>
             <input class="form-control" type="text" id="specialisation" th:field="*{specialisation}"/>
         </div>
         <div class="mb-1 w-75 p-3">
-            <label class="form-label" for="userName">UserName:</label>
+            <label class="form-label" for="userName"><b>UserName:</b></label>
             <input class="form-control" type="text" id="userName" th:field="*{userName}"/>
         </div>
         <div class="mb-1 w-75 p-3">
-            <label class="form-label" for="userName">Password:</label>
+            <label class="form-label" for="userName"><b>Password:</b></label>
             <input class="form-control" type="password" id="password" th:field="*{password}"/>
         </div>
         <div class="w-75 p-3 text-end">
@@ -33,7 +34,24 @@
             <br>
         </div>
     </form>
-    </div>
+    </center></div>
 </div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+body {
+height: 100%;
+opacity: 1;
+background-image: url("https://wallpaperaccess.com/full/983117.jpg");
+height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
+
+
+</style>
 </body>
 </html>

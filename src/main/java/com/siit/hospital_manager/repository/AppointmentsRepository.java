@@ -6,15 +6,18 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface AppointmentsRepository extends JpaRepository<Appointment, Integer> {
     List<Appointment> findAllByPatientId(Integer id);
+    List<Appointment> findAllByPatientIdAndDateLessThan(Integer id, LocalDateTime endTime);
     Optional<Appointment> findAppointmentByIdAndPatient(Integer id, Patient patient);
     @Modifying
     @Query(value = "DELETE FROM appointments where id = :id", nativeQuery = true)
     void deleteByIdNativeQuery(@Param("id") Integer id);
+
 
 }

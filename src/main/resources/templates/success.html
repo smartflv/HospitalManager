@@ -6,22 +6,47 @@
 </head>
 <body>
 
-<h3>Patient created successfully!</h3>
+<h1><center>Patient created successfully!</center></h1>
 
 <div th:object = "${createPatientDto}">
 <p th:text="'Name: ' + *{name}"></p>
 <p th:text="'Age: ' + *{age}"></p>
+    <p th:text="'Medical history: ' + *{medicalHistory}"></p>
+    <p th:text="'Treatment plan: ' + *{treatmentPlan}"></p>
 </div>
-
-<button onclick="window.location.href='/mvc/patient/viewAll';">
+<center>
+<button class="view-button" onclick="window.location.href='/mvc/patient/viewAll';">
     View the patients list
 </button>
 <p></p>
-<button onclick="window.location.href='/';">
+<button class="home-button" onclick="window.location.href='/';">
     Home
 </button>
+</center>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+body {
+height: 100%;
+background-image: url("https://img.freepik.com/free-vector/hospital-clinic-building-with-ambulance-car-truck_107791-2645.jpg?w=1480&t=st=1677425090~exp=1677425690~hmac=8a2c69ac6b21911399790c541304cf69544ffb3e3ede0961d7e60bb319d2ad7d");
+height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
+.view-button {
+background-color: #87CEFA;
+border-radius: 4px;
+}
+.home-button {
+background-color: #87CEFA;
+border-radius: 4px;
+}
 
 
+</style>
 
 </body>
 </html>

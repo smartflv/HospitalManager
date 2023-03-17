@@ -1,5 +1,4 @@
 package com.siit.hospital_manager.controller;
-
 import com.siit.hospital_manager.model.dto.CreatePatientDto;
 import com.siit.hospital_manager.model.dto.PatientDto;
 import com.siit.hospital_manager.service.PatientService;
@@ -11,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -47,4 +47,15 @@ public class PatientMvcController {
         return "redirect:/dashboard";
     }
 
+    @GetMapping("/medicalHistory")
+    public String viewMedicalHistory (Model model, Principal principal) {
+        model.addAttribute("patient", patientService.findByUserName(principal.getName()));
+        return "/patient/viewMedicalHistory";
+    }
+
+    @GetMapping("/treatmentPlan")
+    public String viewTreatmentPlan (Model model, Principal principal) {
+        model.addAttribute("patient", patientService.findByUserName(principal.getName()));
+        return "/patient/treatmentPlan";
+    }
 }
